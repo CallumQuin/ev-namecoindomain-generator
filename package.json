@@ -2,7 +2,7 @@
     "name": "nmc-punnycode",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://callumquin.github.io/ev-namecoinid-generator/",
+    "homepage": "https://callumquin.gitlab.io/ev-namecoinid-generator/",
     "dependencies": {
         "@chakra-ui/react": "^1.7.4",
         "@emotion/react": "^11.7.1",
