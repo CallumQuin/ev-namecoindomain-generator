@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
 import NameCoinIds from "./nameCoinId";
-import { format } from 'date-fns';
 import { Flex } from '@chakra-ui/react'
-const bgImage = require('./namecoinIDBackground.png');
+import moment from "moment";
+const bgImage = require('./namecoindID712.png');
 
 const tr46 = require("tr46");
 const SCALE = 1;
@@ -27,12 +27,13 @@ const EVAssets = () => {
   // const monthFormatted = Month < 10 ? `0${Month}` : Month;
   // const dayFormatted = Day < 10 ? `0${Day}` : Day;
   //const date = blockTimeFirstNew;//`${Year}-${monthFormatted}-${dayFormatted}`;
-  const date = Date.parse(blockTimeFirstNew, "MM/dd/yyyy HH:mm a");
+  //const date = Date.parse(blockTimeFirstNew, "MM/dd/yyyy HH:mm a");
+  const date = moment.utc(blockTimeFirstNew);
 
-
-  const registrationImage = format(date, "yyyy-MM-dd");
-  const registrationTitle = format(date, "yyyy-MM");
-  const registrationDescription = format(date, "MMM do, yyyy");
+  //const registrationImage = format(date, "yyyy-MM-dd");
+  const registrationImage = date.format('dddd,  MMMM Do,  YYYY,  h:mm  a') + "  (UTC)";
+  const registrationTitle = date.format('YYYY-MM');//format(date, "yyyy-MM");
+  const registrationDescription = date.format("MMM Do, YYYY");
 
   const calculateFontSize = (text) => {
     if (text.length < 10) {
@@ -95,6 +96,8 @@ const EVAssets = () => {
   //   }
   // }
 
+
+
   const onLoad = () => {
     const punycode = nmcAsset.substring(nmcAsset.indexOf("/") + 1, nmcAsset.length);
     const convertedPunycode = tr46.toUnicode(punycode).domain;
@@ -106,6 +109,7 @@ const EVAssets = () => {
     console.log(fontSize);
     setUnicode(convertedPunycode);
 
+    //Get Fonts
     const canvas = canvasEl.current;
     const imgWidth = imgEl.current.width;
     const imgHeight = imgEl.current.height;
@@ -116,24 +120,78 @@ const EVAssets = () => {
     ctx.scale(SCALE, SCALE);
 
 
-    ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
+    // ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
-    ctx.font = `${fontSize} sans-serif`
-    ctx.textAlign = "center";
-    ctx.fillStyle = "white";
-    ctx.textBaseline = "middle";
-    ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
-    ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
+    ctx.font = `${fontSize} DiodrumSemibold`
+
+    var isFontLoaded = false;
+    var TEXT_TEXT = 'Some test text;';
+    var initialMeasure = ctx.measureText(TEXT_TEXT);
+    var initialWidth = initialMeasure.width;
+
+    function whenFontIsLoaded(callback, attemptCount) {
+      console.log("Loading Font")
+      if (attemptCount === undefined) {
+        attemptCount = 0;
+      }
+      if (attemptCount >= 20) {
+        callback();
+        return;
+      }
+      if (isFontLoaded) {
+        callback();
+        return;
+      }
+      const metrics = ctx.measureText(TEXT_TEXT);
+      const width = metrics.width;
+      if (width !== initialWidth) {
+        isFontLoaded = true;
+        callback();
+      } else {
+        setTimeout(function () {
+          whenFontIsLoaded(callback, attemptCount + 1);
+        }, 1000);
+      }
+    }
+
+    whenFontIsLoaded(function () {
+      ctx.font = `${fontSize} SaturdaySansBold`
+
+      isFontLoaded = false;
+      TEXT_TEXT = 'Some test text;';
+      initialMeasure = ctx.measureText(TEXT_TEXT);
+      initialWidth = initialMeasure.width;
+
+      whenFontIsLoaded(function () {
+        ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
+
+        ctx.font = `${fontSize} DiodrumSemibold`
+        ctx.textAlign = "center";
+        ctx.fillStyle = "white";
+        ctx.textBaseline = "middle";
+        ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+        // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
+
+        ctx.font = `25px SaturdaySansBold`
+        ctx.textAlign = "middle";
+        ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
+        ctx.font = "33px SaturdaySansBold";
+        ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+      })
+    });
 
 
-    ctx.font = "20px sans-serif";
-    ctx.textAlign = "right";
-    ctx.fillText(`Block ${blockFirstNew}`, imgWidth * (2 - SCALE) - 35, imgHeight * (2 - SCALE) - 68);
-    ctx.fillText(`${registrationImage}`, imgWidth * (2 - SCALE) - 35, imgHeight * (2 - SCALE) - 43);
+
+
+
+
+
 
     //setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
-    setTitle(`${nmcAsset} | ${registrationTitle} | Namecoin Identities`);
+    setTitle(`${nmcAsset} | ${registrationTitle} | Namecoin Identity (id/ asset) |`);
   };
+
+
 
   return (
     <>
