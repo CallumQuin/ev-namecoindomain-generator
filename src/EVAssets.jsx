@@ -162,6 +162,7 @@ const EVAssets = () => {
       initialMeasure = ctx.measureText(TEXT_TEXT);
       initialWidth = initialMeasure.width;
 
+
       whenFontIsLoaded(function () {
         ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
@@ -169,13 +170,13 @@ const EVAssets = () => {
         ctx.textAlign = "center";
         ctx.fillStyle = "white";
         ctx.textBaseline = "middle";
-        ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+        ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
         // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
 
         ctx.font = `25px SaturdaySansBold`
         ctx.textAlign = "middle";
         ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
-        ctx.font = "33px SaturdaySansBold";
+        ctx.font = "31px SaturdaySansBold";
         ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
       })
     });
