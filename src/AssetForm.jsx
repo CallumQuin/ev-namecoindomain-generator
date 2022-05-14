@@ -4,13 +4,10 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Button,
-  FormErrorMessage,
-  FormHelperText,
+  Button
 } from '@chakra-ui/react';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Heading } from '@chakra-ui/react';
-const tr46 = require("tr46");
 
 const AssetForm = () => {
   const [nmcAsset, setNmcAsset] = useState("");

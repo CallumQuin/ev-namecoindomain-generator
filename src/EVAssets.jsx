@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
 import Description from "./Description";
 import { useParams } from "react-router-dom";
-import Punycodes from "./punycodes";
 import NameCoinIds from "./nameCoinId";
-import { format, parseISO } from 'date-fns';
-import { SimpleGrid, Flex, Spacer } from '@chakra-ui/react'
-import Graphemer from 'graphemer';
+import { format } from 'date-fns';
+import { Flex } from '@chakra-ui/react'
 const bgImage = require('./namecoinID.png');
 
 const tr46 = require("tr46");
@@ -19,14 +17,13 @@ const EVAssets = () => {
   const [title, setTitle] = useState("");
   const [unicode, setUnicode] = useState("");
   const { prefix, nameCoinId } = useParams();
-  const [translation, setTranslation] = useState("");
 
   const nmcAsset = prefix.concat("/" + nameCoinId);
   console.log(nmcAsset)
   const nameCoinDescription = NameCoinIds.find(({ nameASCII }) => nameASCII === nmcAsset);
   console.log("HERE")
   console.log(nameCoinDescription);
-  const { blockFirstNew, blockTimeFirstNew, blockFirstUpdate } = nameCoinDescription;
+  const { blockFirstNew, blockTimeFirstNew } = nameCoinDescription;
   // const monthFormatted = Month < 10 ? `0${Month}` : Month;
   // const dayFormatted = Day < 10 ? `0${Day}` : Day;
   //const date = blockTimeFirstNew;//`${Year}-${monthFormatted}-${dayFormatted}`;
