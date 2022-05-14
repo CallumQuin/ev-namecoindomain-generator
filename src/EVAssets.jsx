@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import NameCoinIds from "./nameCoinId";
 import { format } from 'date-fns';
 import { Flex } from '@chakra-ui/react'
-const bgImage = require('./namecoinID.png');
+const bgImage = require('./namecoinIDBackground.png');
 
 const tr46 = require("tr46");
 const SCALE = 1;
