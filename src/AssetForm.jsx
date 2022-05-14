@@ -41,7 +41,7 @@ const AssetForm = () => {
             <Button type="submit">Generate</Button>
           </HStack>
         </form>
-        <a href="https://github.com/cryptokorin" target="_blank" style={{ textDecoration: 'underline black' }}>Credit to cryptokorin</a>
+        <a href="https://github.com/cryptokorin" target="_blank" rel="noreferrer" style={{ textDecoration: 'underline black' }}>Credit to cryptokorin</a>
 
       </VStack>
     </Container >
