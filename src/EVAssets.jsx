@@ -191,7 +191,7 @@ const EVAssets = () => {
 
       ctx.font = `25px SaturdaySansBold`
       ctx.textAlign = "middle";
-      ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
+      ctx.fillText(`Transaction Included At Block Height ${blockFirstNew}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
       ctx.font = "31px SaturdaySansBold";
       ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
     })
