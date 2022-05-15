@@ -154,41 +154,49 @@ const EVAssets = () => {
       }
     }
 
-    whenFontIsLoaded(function () {
-      console.log("Font 1 Loaded");
-      ctx.font = `${fontSize} SaturdaySansBold`
+    // whenFontIsLoaded(function () {
+    //   console.log("Font 1 Loaded");
+    //   ctx.font = `${fontSize} SaturdaySansBold`
 
-      isFontLoaded = false;
-      TEXT_TEXT = 'Some test text;';
-      initialMeasure = ctx.measureText(TEXT_TEXT);
-      initialWidth = initialMeasure.width;
-
-
-      whenFontIsLoaded(function () {
-        console.log("Font 2 Loaded");
-        ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
-
-        ctx.font = `${fontSize} DiodrumSemibold`
-        ctx.textAlign = "center";
-        ctx.fillStyle = "white";
-        ctx.textBaseline = "middle";
-        ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
-        // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
-
-        ctx.font = `25px SaturdaySansBold`
-        ctx.textAlign = "middle";
-        ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
-        ctx.font = "31px SaturdaySansBold";
-        ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
-      })
-    });
+    //   isFontLoaded = false;
+    //   TEXT_TEXT = 'Some test text;';
+    //   initialMeasure = ctx.measureText(TEXT_TEXT);
+    //   initialWidth = initialMeasure.width;
 
 
+    //   whenFontIsLoaded(function () {
+    //     console.log("Font 2 Loaded");
+    //     ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
+    //     ctx.font = `${fontSize} DiodrumSemibold`
+    //     ctx.textAlign = "center";
+    //     ctx.fillStyle = "white";
+    //     ctx.textBaseline = "middle";
+    //     ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+    //     // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
 
+    //     ctx.font = `25px SaturdaySansBold`
+    //     ctx.textAlign = "middle";
+    //     ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
+    //     ctx.font = "31px SaturdaySansBold";
+    //     ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+    //   })
+    // });
 
+    ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
+    ctx.font = `${fontSize} DiodrumSemibold`
+    ctx.textAlign = "center";
+    ctx.fillStyle = "white";
+    ctx.textBaseline = "middle";
+    ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+    // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
 
+    ctx.font = `25px SaturdaySansBold`
+    ctx.textAlign = "middle";
+    ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
+    ctx.font = "31px SaturdaySansBold";
+    ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
 
     //setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
     setTitle(`${nmcAsset} | ${registrationTitle} | Namecoin Identity (id/ asset) |`);
