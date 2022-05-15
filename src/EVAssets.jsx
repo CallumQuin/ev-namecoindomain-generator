@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
+import WebFont from 'webfontloader';
 import Description from "./Description";
 import { useParams } from "react-router-dom";
 import NameCoinIds from "./nameCoinId";
 import { Flex } from '@chakra-ui/react'
 import moment from "moment";
+import useFontFaceObserver from "use-font-face-observer";
 const bgImage = require('./namecoindID712.png');
+
 
 const tr46 = require("tr46");
 const SCALE = 1;
@@ -96,7 +99,16 @@ const EVAssets = () => {
   //   }
   // }
 
+  WebFont.load({
+    custom: {
+      families: ['DiodrumSemibold', 'SaturdaySansBold'],
+    },
+  });
 
+  const isFontListLoaded = useFontFaceObserver([
+    { family: `DiodrumSemibold` },
+    { family: `SaturdaySansBold` },
+  ]);
 
   const onLoad = () => {
     const punycode = nmcAsset.substring(nmcAsset.indexOf("/") + 1, nmcAsset.length);
@@ -122,35 +134,20 @@ const EVAssets = () => {
 
     // ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
-    ctx.font = `${fontSize} DiodrumSemibold`
-
-    var isFontLoaded = false;
-    var TEXT_TEXT = 'Some test text;';
-    var initialMeasure = ctx.measureText(TEXT_TEXT);
-    var initialWidth = initialMeasure.width;
-
     function whenFontIsLoaded(callback, attemptCount) {
-      console.log("Loading Font")
+      console.log("Loading Font: " + isFontListLoaded)
+
       if (attemptCount === undefined) {
         attemptCount = 0;
       }
-      if (attemptCount >= 20) {
+
+      if (isFontListLoaded) {
         callback();
         return;
-      }
-      if (isFontLoaded) {
-        callback();
-        return;
-      }
-      const metrics = ctx.measureText(TEXT_TEXT);
-      const width = metrics.width;
-      if (width !== initialWidth) {
-        isFontLoaded = true;
-        callback();
       } else {
         setTimeout(function () {
           whenFontIsLoaded(callback, attemptCount + 1);
-        }, 1000);
+        }, 500);
       }
     }
 
@@ -182,21 +179,22 @@ const EVAssets = () => {
     //     ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
     //   })
     // });
+    whenFontIsLoaded(function () {
+      ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
-    ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
+      ctx.font = `${fontSize} DiodrumSemibold`
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+      ctx.textBaseline = "middle";
+      ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+      // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
 
-    ctx.font = `${fontSize} DiodrumSemibold`
-    ctx.textAlign = "center";
-    ctx.fillStyle = "white";
-    ctx.textBaseline = "middle";
-    ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
-    // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
-
-    ctx.font = `25px SaturdaySansBold`
-    ctx.textAlign = "middle";
-    ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
-    ctx.font = "31px SaturdaySansBold";
-    ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+      ctx.font = `25px SaturdaySansBold`
+      ctx.textAlign = "middle";
+      ctx.fillText(`TRANSACTION (block ${blockFirstNew})`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
+      ctx.font = "31px SaturdaySansBold";
+      ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+    })
 
     //setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
     setTitle(`${nmcAsset} | ${registrationTitle} | Namecoin Identity (id/ asset) |`);
