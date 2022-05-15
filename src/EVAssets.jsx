@@ -155,6 +155,7 @@ const EVAssets = () => {
     }
 
     whenFontIsLoaded(function () {
+      console.log("Font 1 Loaded");
       ctx.font = `${fontSize} SaturdaySansBold`
 
       isFontLoaded = false;
@@ -164,6 +165,7 @@ const EVAssets = () => {
 
 
       whenFontIsLoaded(function () {
+        console.log("Font 2 Loaded");
         ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
         ctx.font = `${fontSize} DiodrumSemibold`
