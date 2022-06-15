@@ -29,18 +29,19 @@ const AssetForm = () => {
     <Container width="100vw" height="100vh">
       <VStack>
 
-        <Heading size='2xl' mt="30vh" mb="2vh">Namecoin id/ Generator</Heading>
+        <Heading size='xl' mt="30vh" mb="2vh">Namecoin Domain Generator</Heading>
 
         <form onSubmit={onSubmit}>
           <HStack align="flex-end">
             <FormControl>
               <FormLabel htmlFor="nmcAsset">Asset</FormLabel>
               <Input id="nmcAsset" name="nmcAsset" type="text"
-                value={nmcAsset} onChange={handleChange} placeholder="id/khal" />
+                value={nmcAsset} onChange={handleChange} placeholder="d/bitcoin" />
             </FormControl>
             <Button type="submit">Generate</Button>
           </HStack>
         </form>
+        <a href="https://twitter.com/CallumQuin" target="_blank" rel="noreferrer" style={{ textDecoration: 'underline black' }}>Built by Callum Quin</a>
         <a href="https://github.com/cryptokorin" target="_blank" rel="noreferrer" style={{ textDecoration: 'underline black' }}>Credit to cryptokorin</a>
 
       </VStack>

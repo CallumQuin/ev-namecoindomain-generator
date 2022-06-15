@@ -2,11 +2,11 @@ import { useRef, useState } from "react";
 import WebFont from 'webfontloader';
 import Description from "./Description";
 import { useParams } from "react-router-dom";
-import NameCoinIds from "./nameCoinId";
+import NameCoinIds from "./2011Domain.json";
 import { Flex } from '@chakra-ui/react'
 import moment from "moment";
 import useFontFaceObserver from "use-font-face-observer";
-const bgImage = require('./namecoindID712.png');
+const bgImage = require('./namecoin_baselayer.png');
 
 
 const tr46 = require("tr46");
@@ -21,22 +21,22 @@ const EVAssets = () => {
   const [unicode, setUnicode] = useState("");
   const { prefix, nameCoinId } = useParams();
 
-  const nmcAsset = prefix.concat("/" + nameCoinId);
+  const nmcAsset = nameCoinId + ".bit"//prefix.concat("/" + nameCoinId);
   console.log(nmcAsset)
-  const nameCoinDescription = NameCoinIds.find(({ nameASCII }) => nameASCII === nmcAsset);
+  const nameCoinDescription = NameCoinIds.find(({ bitDomain }) => bitDomain === nmcAsset);
   console.log("HERE")
   console.log(nameCoinDescription);
-  const { blockFirstNew, blockTimeFirstNew } = nameCoinDescription;
+  // const { blockFirstNew, blockTimeFirstNew } = nameCoinDescription;
   // const monthFormatted = Month < 10 ? `0${Month}` : Month;
   // const dayFormatted = Day < 10 ? `0${Day}` : Day;
   //const date = blockTimeFirstNew;//`${Year}-${monthFormatted}-${dayFormatted}`;
   //const date = Date.parse(blockTimeFirstNew, "MM/dd/yyyy HH:mm a");
-  const date = moment.utc(blockTimeFirstNew);
+  // const date = moment.utc(blockTimeFirstNew);
 
   //const registrationImage = format(date, "yyyy-MM-dd");
-  const registrationImage = date.format('dddd,  MMMM Do,  YYYY,  h:mm  a') + "  (UTC)";
-  const registrationTitle = date.format('YYYY-MM');//format(date, "yyyy-MM");
-  const registrationDescription = date.format("MMM Do, YYYY");
+  // const registrationImage = date.format('dddd,  MMMM Do,  YYYY,  h:mm  a') + "  (UTC)";
+  // const registrationTitle = date.format('YYYY-MM');//format(date, "yyyy-MM");
+  // const registrationDescription = date.format("MMM Do, YYYY");
 
   const calculateFontSize = (text) => {
     if (text.length < 10) {
@@ -101,25 +101,22 @@ const EVAssets = () => {
 
   WebFont.load({
     custom: {
-      families: ['DiodrumSemibold', 'SaturdaySansBold'],
+      families: ['MontserratExtraBold'],
     },
   });
 
   const isFontListLoaded = useFontFaceObserver([
-    { family: `DiodrumSemibold` },
-    { family: `SaturdaySansBold` },
+    { family: `MontserratExtraBold` },
   ]);
 
   const onLoad = () => {
-    const punycode = nmcAsset.substring(nmcAsset.indexOf("/") + 1, nmcAsset.length);
-    const convertedPunycode = tr46.toUnicode(punycode).domain;
-
-    const namecoinId = nmcAsset.substring(nmcAsset.indexOf("/") + 1, nmcAsset.length);
-    console.log(namecoinId);
+    // const punycode = nmcAsset.substring(nmcAsset.indexOf("/") + 1, nmcAsset.length);
+    // const convertedPunycode = tr46.toUnicode(punycode).domain;
+    console.log(nmcAsset);
 
     const fontSize = calculateFontSize(nmcAsset);
     console.log(fontSize);
-    setUnicode(convertedPunycode);
+    // setUnicode(convertedPunycode);
 
     //Get Fonts
     const canvas = canvasEl.current;
@@ -179,25 +176,72 @@ const EVAssets = () => {
     //     ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
     //   })
     // });
+
+    const position = nameCoinDescription.firstTransactionDate.indexOf(",", nameCoinDescription.firstTransactionDate.indexOf(",") + 1);
+    const dateText = nameCoinDescription.firstTransactionDate.substring(0, position);
+    const timeText = nameCoinDescription.firstTransactionDate.substring(position + 1, nameCoinDescription.firstTransactionDate.length)
+
     whenFontIsLoaded(function () {
       ctx.drawImage(imgEl.current, imgWidth * (1 - SCALE), imgHeight * (1 - SCALE));
 
-      ctx.font = `${fontSize} DiodrumSemibold`
+
+      //Ranking
+      ctx.font = `50px MontserratExtraBold`
+      ctx.textAlign = "center";
+      ctx.fillStyle = "rgb(52, 106, 153)";
+      // ctx.fillStyle = "white";
+
+      const hashWidth = ctx.measureText("#").width;
+      const textWidth = ctx.measureText(nameCoinDescription.RegistrationOrder.replace(/\s/g, '')).width;
+
+      ctx.fillText("#", imgWidth * (1 - SCALE + 1 / 2) - textWidth / 2, 120)
+      ctx.fillStyle = "white";
+      ctx.fillText(nameCoinDescription.RegistrationOrder.replace(/\s/g, ''), imgWidth * (1 - SCALE + 1 / 2) + hashWidth / 2, 120)
+
+
+
+
+
+
+      ctx.font = `${fontSize} MontserratExtraBold`
       ctx.textAlign = "center";
       ctx.fillStyle = "white";
       ctx.textBaseline = "middle";
-      ctx.fillText(nmcAsset, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2) - 20);
+      const bitWidth = ctx.measureText(".bit").width
+      const nameWidth = ctx.measureText(nmcAsset.substring(nmcAsset.length - 4, "end")).width;
+
+
+      //Main .bit Name
+      ctx.fillText(nmcAsset.substring(nmcAsset.length - 4, "end"), imgWidth * (1 - SCALE + 1 / 2) - bitWidth / 2, imgHeight * (1 - SCALE + 1 / 2) - 20);
+      //244, 178, 62
+      ctx.fillStyle = 'rgb(244,177,62)';
+      ctx.fillText(".bit", imgWidth * (1 - SCALE + 1 / 2) + nameWidth / 2, imgHeight * (1 - SCALE + 1 / 2) - 20);
+      //244, 178, 62)
+
       // ctx.fillText(nmcAsset + "\n", imgWidth * (1 - SCALE + 1 / 2), imgHeight * (1 - SCALE + 1 / 2));
 
-      ctx.font = `25px SaturdaySansBold`
+
+
+
+
+
+
+      ctx.font = `45px MontserratExtraBold`
+      ctx.fillStyle = "white";
       ctx.textAlign = "middle";
-      ctx.fillText(`Transaction Included At Block Height ${blockFirstNew}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 35);
-      ctx.font = "31px SaturdaySansBold";
-      ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+      ctx.fillText(dateText, imgWidth * (1 - SCALE + 1 / 2), 595);
+      // ctx.font = "31px SaturdaySansBold";
+      // ctx.fillText(`${registrationImage}`, imgWidth * (1 - SCALE + 1 / 2), imgHeight * (2 - SCALE) - 80);
+
+      ctx.font = `35px MontserratExtraBold`
+      ctx.fillText(timeText + " UTC", imgWidth * (1 - SCALE + 1 / 2), 635);
+
     })
 
+
+
     //setTitle(`${convertedPunycode} | ${registrationTitle} | Punycodes | ${nmcAsset}`);
-    setTitle(`${nmcAsset} | ${registrationTitle} | Namecoin Identity (id/ asset) |`);
+    setTitle(`${nmcAsset} | ${dateText} | Namecoin Domain (d/ asset) |`);
   };
 
 
@@ -210,7 +254,7 @@ const EVAssets = () => {
           title={title}
           punycode={unicode}
           nmcAsset={nmcAsset}
-          registration={registrationDescription}
+          registration={"TEST"}
           onLoad={onLoad}
         />
       </Flex>

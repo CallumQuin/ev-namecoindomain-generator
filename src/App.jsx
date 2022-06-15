@@ -8,7 +8,7 @@ import WebFont from 'webfontloader';
 function App() {
   WebFont.load({
     custom: {
-      families: ['DiodrumSemibold', 'SaturdaySansBold'],
+      families: ['MontserratExtraBold'],
     },
   });
 

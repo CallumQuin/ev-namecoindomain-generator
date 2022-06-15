@@ -11,18 +11,6 @@ code {
 }
 
 @font-face {
-    font-family: "DiodrumSemibold";
-    src: url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.eot");
-    /* IE9*/
-    src: url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.woff2") format("woff2"), /* chrome、firefox */
-    url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.woff") format("woff"), /* chrome、firefox */
-    url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-    url("./fonts/DiodrumSemibold/f42a40f289fd237da5d2fd13fee2cc1e.svg#Diodrum W03 Semibold") format("svg");
-    /* iOS 4.1- */
-}
-
-@font-face {
-    font-family: "SaturdaySansBold";
-    src: url("./fonts/SaturdaySansBold/saturday-sans-icg-bold.ttf") format("truetype")/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    font-family: "MontserratExtraBold";
+    src: url("./fonts/Montserrat/Montserrat-ExtraBold.ttf") format("truetype")/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
 }

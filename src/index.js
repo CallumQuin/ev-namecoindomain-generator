@@ -9,25 +9,29 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 import './index.css';
 
 const breakpoints = createBreakpoints({
-  sm: '30em',
-  md: '48em',
-  lg: '62em',
-  xl: '1300px',
-  '2xl': '96em'
+    sm: '30em',
+    md: '48em',
+    lg: '62em',
+    xl: '1300px',
+    '2xl': '96em'
 })
 
 const theme = extendTheme({ breakpoints })
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <BrowserRouter basename="/ev-namecoinid-generator">
-        <App />
-      </BrowserRouter>
-    </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+ReactDOM.render( <
+    React.StrictMode >
+    <
+    ChakraProvider theme = { theme } >
+    <
+    BrowserRouter basename = "/ev-domain-generator" >
+    <
+    App / >
+    <
+    /BrowserRouter> <
+    /ChakraProvider> <
+    /React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
