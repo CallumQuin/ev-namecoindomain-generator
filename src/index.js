@@ -28,8 +28,8 @@ ReactDOM.render( <
     <
     App / >
     <
-    /BrowserRouter> <
-    /ChakraProvider> <
+    /BrowserRouter> < /
+    ChakraProvider > <
     /React.StrictMode>,
     document.getElementById('root')
 );
