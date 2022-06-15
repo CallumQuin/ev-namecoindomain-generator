@@ -24,7 +24,7 @@ ReactDOM.render( <
     <
     ChakraProvider theme = { theme } >
     <
-    BrowserRouter basename = "/ev-domain-generator" >
+    BrowserRouter basename = "/ev-namecoindomain-generator" >
     <
     App / >
     <
