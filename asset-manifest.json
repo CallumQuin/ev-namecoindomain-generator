@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ev-namecoindomain-generator/static/css/main.d0b8714c.css",
+    "main.js": "/ev-namecoindomain-generator/static/js/main.64a7de33.js",
+    "static/js/787.017bbc80.chunk.js": "/ev-namecoindomain-generator/static/js/787.017bbc80.chunk.js",
+    "static/media/Montserrat-ExtraBold.ttf": "/ev-namecoindomain-generator/static/media/Montserrat-ExtraBold.5daafc620ecc802516f9.ttf",
+    "static/media/namecoin_baselayer.png": "/ev-namecoindomain-generator/static/media/namecoin_baselayer.73f096ed89120d28b41c.png",
+    "index.html": "/ev-namecoindomain-generator/index.html",
+    "main.d0b8714c.css.map": "/ev-namecoindomain-generator/static/css/main.d0b8714c.css.map",
+    "main.64a7de33.js.map": "/ev-namecoindomain-generator/static/js/main.64a7de33.js.map",
+    "787.017bbc80.chunk.js.map": "/ev-namecoindomain-generator/static/js/787.017bbc80.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0b8714c.css",
+    "static/js/main.64a7de33.js"
+  ]
+}
